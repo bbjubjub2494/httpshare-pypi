@@ -69,7 +69,7 @@ cat <<END
         <pre>
 zlib License
 
-Copyright 2017 Louis Bettens
+Copyright 2018 Louis Bettens
 
 This software is provided &#039;as-is&#039;, without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the
@@ -107,6 +107,10 @@ done
 
 setup () {
 tempdir=$(mktemp -d -p "$BATS_TMPDIR" httpshare.XXXXXX)
+
+repodir=$(git rev-parse --show-toplevel)
+[ -n "$repodir" ]
+
 cd "$tempdir"
 mkdir share
 echo "content of a" >share/a
@@ -114,8 +118,13 @@ mkdir share/b
 echo "content of b/c" >share/b/c
 server_dir="$tempdir/share"
 server_log="$tempdir/server.log"
+
+# needed so that yes_server can insert eols
 exec {into_server_log}>"$server_log"
-coproc server (PYTHONUNBUFFERED=y httpshare --address=127.0.0.1 --directory "$server_dir" >&$into_server_log 2>&1)
+# needed so that found_url and asked get sent the output from the server
+export PYTHONUNBUFFERED=y
+
+coproc server (httpshare --address=127.0.0.1 --directory "$server_dir" >&$into_server_log 2>&1)
   found_url () {
     server_url=$(grep '^http://' "$server_log")
     [ -n "$server_url" ]
@@ -134,11 +143,11 @@ yes_server () {
 }
 
 teardown () {
-kill $server_PID
+kill -INT $server_PID
 echo "server output:"
 cat "$server_log"
 echo
-cd
+cd "$repodir" || return
 rm -rf "$tempdir"
 }
 
