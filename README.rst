@@ -9,7 +9,7 @@ An easy-to-deploy file transfer tool.  The only requirements are:
 
 * The other has a web browser.
 
-.. figure:: https://raw.githubusercontent.com/lourkeur/httpshare/pypi/static/demo1.png
+.. figure:: https://raw.githubusercontent.com/lourkeur/httpshare-pypi/master/static/demo1.png
    :target: demo1_transcript_
    :alt:
      Screenshot of httpshare in a vanilla Ubuntu terminal.
@@ -18,7 +18,7 @@ An easy-to-deploy file transfer tool.  The only requirements are:
    httpshare displaying a QR code as it starts.
 
 
-.. figure:: https://raw.githubusercontent.com/lourkeur/httpshare/pypi/static/demo2.png
+.. figure:: https://raw.githubusercontent.com/lourkeur/httpshare-pypi/master/static/demo2.png
    :target: demo2_transcript_
    :alt:
      Screenshot of the homepage of httpshare's ephemeral site.
@@ -68,7 +68,7 @@ __ https://github.com/lourkeur/httpshare
 httpshare is `free software`_, released under the zlib/libpng License.
 If you intend to distribute derivative version of this software, I would encourage using the ``PREFIX`` field in ``version.py`` to mark them as such.
 
-.. _the signing key: https://github.com/lourkeur/httpshare/blob/pypi/release_key.asc
+.. _the signing key: https://github.com/lourkeur/httpshare-pypi/blob/master/release_key.asc
 .. _free software: http://www.gnu.org/philosophy/free-sw.html
 
 Trivia

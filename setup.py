@@ -10,7 +10,7 @@ setup(
     long_description=io.open('README.rst', encoding='utf-8').read(),
 
     # The project's main homepage.
-    url='https://github.com/lourkeur/httpshare/tree/pypi',
+    url='https://github.com/lourkeur/httpshare-pypi',
 
     # Author details
     author='Louis Bettens',
