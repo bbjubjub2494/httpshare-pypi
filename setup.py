@@ -4,7 +4,7 @@ import io
 
 setup(
     name='httpshare',
-    version='1.0.5',
+    version='1.0.5.post1',
     description='Q&D file transfer utility using an ephemeral HTTP service',
 
     long_description=io.open('README.rst', encoding='utf-8').read(),
@@ -45,7 +45,7 @@ setup(
     zip_safe=True,  # by design
 
     install_requires=[
-        'bottle==0.12.13',
+        'bottle==0.12.14',
         'colorama==0.3.9',
         'docopt==0.6.2',
         'qrcode==6.0',
