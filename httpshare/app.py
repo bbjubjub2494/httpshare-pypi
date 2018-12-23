@@ -1,9 +1,8 @@
-# Copyright 2018 Louis Bettens
+# Copyright 2019 Louis Bettens
 
 
 import os, pkgutil, sys
 import os.path as path
-from os.path import abspath, dirname
 
 import bottle
 from bottle import abort, redirect, request, response, route, static_file
@@ -34,8 +33,8 @@ def share(resourcepath=''):
     config = request.app.config
     directory = config['httpshare.directory'] or '.'
     # the two next lines are taken from bottle.static_file
-    root = path.join(abspath(directory), '')
-    resource = abspath(path.join(root, resourcepath)) if resourcepath else root
+    root = path.join(path.abspath(directory), '')
+    resource = path.abspath(path.join(root, resourcepath)) if resourcepath else root
 
     if not resource.startswith(root):
         abort(403, "Access denied.")
