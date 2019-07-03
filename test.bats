@@ -95,6 +95,36 @@ freely, subject to the following restrictions:
 END
 }
 
+specialchars_filename='~.,%#?$ *+@&|:;@[]=!"'"'"
+specialchars_filename_html='~.,%#?$ *+@&amp;|:;@[]=!&quot;&#039;'
+specialchars_filename_urlescaped=$(python <<END
+from httpshare.compat.urllib.parse import quote
+print(quote("""${specialchars_filename}"""))
+END
+)
+expected_specialchars_index () {
+cat <<END
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html>
+    <head>
+        <title>httpshare &mdash; .specialchars/</title>
+    </head>
+    <body>
+        <h1>.specialchars/</h1>
+<ul>
+    <li><a href='${specialchars_filename_urlescaped}'>${specialchars_filename_html}</a></li>
+</ul>
+<hr/>
+<form enctype='multipart/form-data', method='post'>
+  <input type='file', name='payload' />
+  <input type='submit', value='OK' />
+</form>
+
+    </body>
+</html>
+END
+}
+
 wait_till () {
 local tries=0
 until "$@"; do
@@ -116,6 +146,9 @@ mkdir share
 echo "content of a" >share/a
 mkdir share/b
 echo "content of b/c" >share/b/c
+
+mkdir share/.specialchars
+echo "content of illegibly-named file" >"share/.specialchars/${specialchars_filename}"
 server_dir="$tempdir/share"
 server_log="$tempdir/server.log"
 
@@ -200,4 +233,12 @@ diff -u <(expected_homepage) <(curl -s -L "$server_url/share/a/../../../..")
 
 @test "license page" {
 diff -u <(expected_license_page) <(curl -s -L "$server_url/license")
+}
+
+@test "correct listing of special character in file names" {
+    diff -u <(expected_specialchars_index) <(curl -s "$server_url/share/.specialchars/")
+}
+
+@test "download of the illegibly-named file" {
+    [ "$(curl -s "$server_url/share/.specialchars/${specialchars_filename_urlescaped}")" = "content of illegibly-named file" ]
 }
