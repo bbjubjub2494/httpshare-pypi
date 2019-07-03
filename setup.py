@@ -37,7 +37,7 @@ setup(
 
     keywords='filetransfer',
 
-    packages=['httpshare'],
+    packages=find_packages(),
 
     package_data={
         'httpshare': ['*.stpl', 'LICENSE.txt'],
