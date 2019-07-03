@@ -10,3 +10,13 @@ python:
 script:
   - pip install .
   - ./test.bats
+deploy:
+  provider: pypi
+  user: lourkeur
+  password:
+    secure: B83jMqlLcbIm5e/z1BBChKg55oCrDVqKsmh/h6csL5Syk86SdVVNYYvOFF9xajkjGfMkhUDLzdTJwJiwb5q1B0OqlbR3PrFZScevDFmF+4GTJ0Uu9jAYD4eg0x0Cfwn+YGLTCPAjwxyhp5qmYewRHo4TaYvO09NLVTFxagORozQSBD71Cy1xkKDws1eTpRnXyKEkhkPVpGrT0oIEkJEPutNPMYd/DME152GAxKr4FGkvytXvvtyj0hvVW8Zzbkzu5aMrXkM4zg0ZxqSzH8pUzfJPOk69TL3VinV10x4z4YSiyXkets7Z6WDnLJr9qQD1/HJMYGWFytRc/HRP1QdH3z+AhIwIDWHXaN4gGwaEqThsZxge729A2Y56pm4789pesADbts5hzk0QuT7IxV4/9jmR0QY+QmD+mI9Bk6SwTefPMJDBDil0WXFmptB4jqcZfojAxoaiVsMsLpnEQo+5HgEsNJF8dXhfgR49oPDwhFtQGDQzz/W/FbGtWJhF+7xkf/dEcNB70J9irC0FQVvJL5gu5xeUKqp4bCNW74KGu2eqWaqELT3LuzCg/CUIH6yBcsYcvnxVtBdPbaLk0+rfWDcZZi4vk4qGs2kAzo9N64l5WpcZu/w+o2Vz20heZobxtm6AmQJfqRnerBMQ9mpWF+ZRHKh9HZGBRYN1DttylDM=
+  on:
+    tags: true
+    distributions: sdist bdist_wheel
+    repo: lourkeur/httpshare-pypi
+    branch: master
