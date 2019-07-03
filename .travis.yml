@@ -10,6 +10,9 @@ python:
 script:
   - pip install .
   - ./test.bats
+before_deploy:
+  - test $(git describe) = $(python setup.py --version)
+  - test $(git describe)-pypi = $(python -c 'import httpshare; print(httpshare.version)')
 deploy:
   provider: pypi
   user: lourkeur
