@@ -10,4 +10,8 @@ let
   }) {}).extend (self: super: {
   });
 in
-  nixpkgs.callPackage ./package.nix {}
+  with nixpkgs; pythonPackages.callPackage ./package.nix {}
+    // {
+      python2 = python2Packages.callPackage ./package.nix {};
+      python3 = python3Packages.callPackage ./package.nix {};
+    }

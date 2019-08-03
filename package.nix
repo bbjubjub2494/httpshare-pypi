@@ -1,20 +1,20 @@
-{ stdenv, bats, python3 }:
-stdenv.mkDerivation {
-  name = "httpshare";
+{ buildPythonPackage
+, bottle
+, colorama
+, docopt
+, qrcode
+}:
+buildPythonPackage {
+  pname = "httpshare";
+  version = "1.0.7";
   src = ./.;
 
-  buildInputs = [bats python3];
+  propagatedBuildInputs = [
+    bottle
+    colorama
+    docopt
+    qrcode
+  ];
 
-  dontPatchShebangs = true;  # Keep the portable shebang.
-
-  buildPhase = ''
-    # set epoch to 1980 because zip doesn't support the seventies
-    find -exec touch -t 198001010000.00 {} +
-    ./make_zipapp.py
-  '';
-
-  installPhase = ''
-    mkdir -p $out/bin
-    cp httpshare.pyz $out/bin/httpshare
-  '';
+  doCheck = false;
 }
