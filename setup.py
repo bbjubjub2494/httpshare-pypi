@@ -46,7 +46,7 @@ setup(
     zip_safe=True,  # by design
 
     install_requires=[
-        'bottle ~= 0.12.16',
+        'bottle ~= 0.12.17',
         'colorama ~= 0.4.1',
         'docopt ~= 0.6.2',
         'qrcode ~= 6.0',
