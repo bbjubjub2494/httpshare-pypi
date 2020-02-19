@@ -41,7 +41,7 @@ setup(
     packages=find_packages(),
 
     package_data={
-        'httpshare': ['*.stpl', 'LICENSE.txt'],
+        'httpshare': ['*.stpl', 'LICENSE.txt', 'version.json'],
     },
     zip_safe=True,  # by design
 

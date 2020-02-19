@@ -3,6 +3,8 @@
 , colorama
 , docopt
 , qrcode
+, bats
+, curl
 }:
 buildPythonPackage {
   pname = "httpshare";
@@ -18,5 +20,8 @@ buildPythonPackage {
     qrcode
   ];
 
-  doCheck = false;
+  checkInputs = [ bats curl ];
+  checkPhase = ''
+    PATH=$out/bin:$PATH bats test.bats
+  '';
 }
