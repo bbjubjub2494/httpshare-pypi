@@ -6,8 +6,10 @@
 }:
 buildPythonPackage {
   pname = "httpshare";
-  version = "1.0.7";
   src = ./.;
+  version = with builtins; with fromJSON (readFile httpshare/version.json);
+    "${toString major}.${toString minor}.${toString patch}"
+      + (if suffix != "" then "-${suffix}" else "");
 
   propagatedBuildInputs = [
     bottle
