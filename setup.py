@@ -4,7 +4,7 @@ import io
 
 setup(
     name='httpshare',
-    version='1.0.7.post1',
+    version='1.0.8',
     description='Q&D file transfer utility using an ephemeral HTTP service',
 
     long_description=io.open('README.rst', encoding='utf-8').read(),
