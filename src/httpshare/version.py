@@ -1,4 +1,4 @@
-# Copyright 2020 Louis Bettens
+# Copyright 2022 Louis Bettens
 
 
 import json, pkgutil
