@@ -8,10 +8,11 @@
 }:
 buildPythonPackage {
   pname = "httpshare";
-  src = ./.;
-  version = with builtins; with fromJSON (readFile httpshare/version.json);
+  version = with builtins; with fromJSON (readFile ../httpshare/version.json);
     "${toString major}.${toString minor}.${toString patch}"
       + (if suffix != "" then "-${suffix}" else "");
+
+  src = builtins.path { path = ../.; name = "source"; };
 
   propagatedBuildInputs = [
     bottle
