@@ -32,6 +32,6 @@ stdenv.mkDerivation {
     description = "A file transfer utility using an ephemeral HTTP service";
     license = licenses.zlib;
     homepage = "https://github.com/lourkeur/httpshare";
-    maintainers = maintainers.lourkeur;
+    maintainers = with maintainers; [ lourkeur ];
   };
 }
